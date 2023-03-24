@@ -56,12 +56,11 @@ public class Fragment1 extends Fragment {
                 Bundle bundle = new Bundle();
                 bundle.putString("example", "example");
                 NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getActivity(), "1");
-                mBuilder.setContentTitle("Notification Alert, Click Me!");
+                mBuilder.setContentTitle("Уведомление");
                 mBuilder.setSmallIcon(R.drawable.ic_launcher_background);
-                mBuilder.setContentText("Hi, This is Android Notification Detail!");
+                mBuilder.setContentText("Детали");
                 NotificationManager mNotificationManager = (NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
                 Log.e(TAG, "ssslls");
-// notificationID allows you to update the notification later on.
                 mNotificationManager.notify(0, mBuilder.build());
                 Navigation.findNavController(view).navigate(R.id.action_fragment1_to_fragment2, bundle);
             }

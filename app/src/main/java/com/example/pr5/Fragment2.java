@@ -1,5 +1,7 @@
 package com.example.pr5;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,6 +13,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
@@ -27,11 +30,9 @@ public class Fragment2 extends Fragment {
         super.onResume();
 
         Button button1 = (Button) getView().findViewById(R.id.button21);
-        button1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Navigation.findNavController(view).navigate(R.id.fragment1);
-            }
+        button1.setOnClickListener(view12 -> {
+            Intent intent = new Intent(getActivity(), MyService.class);
+            getActivity().startService(intent);
         });
 
         Button button2 = (Button) getView().findViewById(R.id.button22);
