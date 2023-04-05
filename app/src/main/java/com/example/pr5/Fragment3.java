@@ -15,7 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 
-public class Fragment3 extends Fragment{
+public class Fragment3 extends Fragment {
+
 
     public Fragment3() {
         super(R.layout.fragment3);

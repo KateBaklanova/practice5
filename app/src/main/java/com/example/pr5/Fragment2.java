@@ -16,34 +16,63 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class Fragment2 extends Fragment {
+public class Fragment2 extends Fragment implements WordsAdapter.OnNoteListener  {
 
     public Fragment2() {
         super(R.layout.fragment2);
     }
 
-    public void onResume() {
+        ArrayList<Words> words = new ArrayList<Words>();
+        @Override
 
-        super.onResume();
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
 
-        Button button1 = (Button) getView().findViewById(R.id.button21);
-        button1.setOnClickListener(view12 -> {
-            Intent intent = new Intent(getActivity(), MyService.class);
-            getActivity().startService(intent);
-        });
 
-        Button button2 = (Button) getView().findViewById(R.id.button22);
-        button2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Navigation.findNavController(view).navigate(R.id.fragment3);
+            setInitialData();
+            View contentView = inflater.inflate(R.layout.fragment2, container, false);
+            RecyclerView recyclerView = contentView.findViewById(R.id.list);
+            WordsAdapter adapter = new WordsAdapter(contentView.getContext(), words, this);
+            recyclerView.setAdapter(adapter);
+
+            return contentView;
+        }
+
+        private void setInitialData(){
+            for (int i=0; i<=200; i++){
+                words.add(new Words ("item"+i, R.drawable.dot));
             }
-        });
+        }
 
-    }
+        @Override
+        public void onNoteClick(int position) {
+            words.get(position);
+        }
 
+        public void onResume() {
+
+            super.onResume();
+            Button button1 = (Button) getView().findViewById(R.id.button21);
+            button1.setOnClickListener(new View.OnClickListener()  {
+                @Override
+                public void onClick(View view) {
+                    Navigation.findNavController(view).navigate(R.id.fragment1);}
+            });
+
+            Button button = (Button) getView().findViewById(R.id.button22);
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Navigation.findNavController(view).navigate(R.id.fragment3);
+                }
+            });
+
+
+
+}
 }
 
